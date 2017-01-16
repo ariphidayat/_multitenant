@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+CREATE TABLE properties
+(
+    id character varying(20) NOT NULL,
+    name character varying(20) NOT NULL,
+    databaseUrl character varying(100),
+    username character varying(50),
+    password character varying(50),
+    CONSTRAINT properties_pk PRIMARY KEY (id)
+)
+-->
+
+<mapper namespace="org.arip.persistence.PropertyMapper">
+
+    <select id="getById" parameterType="java.lang.String" resultType="Property">
+        SELECT
+              id,
+              name,
+              databaseUrl,
+              username,
+              password
+        FROM
+              properties
+        WHERE
+              id = #{id}
+    </select>
+
+</mapper>
