@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.arip.persistence.UserMapper">
+
+    <!--
+    CREATE TABLE users
+    (
+      id integer NOT NULL,
+      name character varying(50) NOT NULL,
+      address character varying(100),
+      CONSTRAINT users_pk PRIMARY KEY (id)
+    )
+    -->
+
+    <select id="getUsers" resultType="User">
+        SELECT id, name, address FROM users
+    </select>
+
+</mapper>

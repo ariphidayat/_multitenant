@@ -1,0 +1,17 @@
+package org.arip.config.multitenant;
+
+/**
+ * Created by Arip Hidayat on 1/13/2017.
+ */
+public class TenantContext {
+
+    private static ThreadLocal<Object> currentTenant = new ThreadLocal<>();
+
+    public static void setCurrentTenant(Object tenant) {
+        currentTenant.set(tenant);
+    }
+
+    public static Object getCurrentTenant() {
+        return currentTenant.get();
+    }
+}
