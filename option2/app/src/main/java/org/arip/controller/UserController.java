@@ -25,7 +25,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String getUsers(@RequestParam("tenant") String tenant, Model model) {
         TenantContext.setCurrentTenant(tenant);
 

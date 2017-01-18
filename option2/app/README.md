@@ -27,6 +27,19 @@ CREATE TABLE users
 )
 ```
 
+```
+CREATE TABLE properties
+(
+  id integer NOT NULL,
+  name character varying(10) NOT NULL,
+  driver character varying(50) NOT NULL,
+  url character varying(200) NOT NULL,
+  username character varying(10) NOT NULL,
+  password character varying(50),
+  CONSTRAINT properties_pk PRIMARY KEY (id)
+)
+```
+
 ### Run and Build :
 * Run application :
 
