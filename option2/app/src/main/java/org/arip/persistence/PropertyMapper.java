@@ -12,4 +12,6 @@ import java.util.List;
 public interface PropertyMapper {
 
     List<Property> getProperties();
+
+    void create(Property property);
 }

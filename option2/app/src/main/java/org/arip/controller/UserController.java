@@ -18,6 +18,7 @@ import java.util.List;
  * Created by Arip Hidayat on 18/04/2016.
  */
 @Controller
+@RequestMapping("user")
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -25,12 +26,30 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String getUsers(@RequestParam("tenant") String tenant, Model model) {
         TenantContext.setCurrentTenant(tenant);
 
         List<User> users = userService.getUsers();
         model.addAttribute("users", users);
         return "user/list";
+    }
+
+    @RequestMapping(value = "new", method = RequestMethod.GET)
+    public String createForm(@RequestParam("tenant") String tenant, Model model) {
+        TenantContext.setCurrentTenant(tenant);
+
+        User user = new User();
+        model.addAttribute("user", user);
+
+        return "user/create";
+    }
+
+    @RequestMapping(value = "new", method = RequestMethod.POST)
+    public String create(@RequestParam("tenant") String tenant, User user) {
+        TenantContext.setCurrentTenant(tenant);
+
+        userService.create(user);
+        return "redirect:/user?tenant=" + tenant;
     }
 }

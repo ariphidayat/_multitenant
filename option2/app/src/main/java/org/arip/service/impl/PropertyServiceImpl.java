@@ -25,6 +25,13 @@ public class PropertyServiceImpl implements PropertyService {
         return propertyMapper.getProperties();
     }
 
+    @Override
+    public Property create(Property property) {
+        propertyMapper.create(property);
+
+        return property;
+    }
+
     public void updateProperties() {
         Map<Object, Object> resolvedDataSources = new HashMap<>();
 

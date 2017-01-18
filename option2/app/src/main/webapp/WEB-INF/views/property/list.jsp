@@ -9,6 +9,8 @@
     </head>
     <body>
         <table>
+            <a href="property/update">Reload and Update Tenant Connection!</a><br/>
+            <a href="property/new">Add New Tenant</a>
             <c:forEach var="property" items="${properties}">
                 <tr>
                     <td>#${property.id}</td>

@@ -14,7 +14,26 @@
     -->
 
     <select id="getUsers" resultType="User">
-        SELECT id, name, address FROM users
+        SELECT
+            id,
+            name,
+            address
+        FROM
+            users
     </select>
+
+    <insert id="create" parameterType="User">
+        INSERT INTO users (
+			id,
+			name,
+			address
+		)
+		VALUES
+		(
+			#{id},
+			#{name},
+			#{address}
+		)
+    </insert>
 
 </mapper>

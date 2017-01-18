@@ -11,5 +11,7 @@ public interface PropertyService {
 
     List<Property> getProperties();
 
+    Property create(Property property);
+
     void updateProperties();
 }

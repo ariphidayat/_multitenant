@@ -28,4 +28,24 @@
               properties
     </select>
 
+    <insert id="create" parameterType="Property">
+        INSERT INTO properties (
+            id,
+            name,
+            driver,
+            url,
+            username,
+            password
+        )
+        VALUES
+        (
+            #{id},
+            #{name},
+            #{driver},
+            #{url},
+            #{username},
+            #{password}
+        )
+    </insert>
+
 </mapper>

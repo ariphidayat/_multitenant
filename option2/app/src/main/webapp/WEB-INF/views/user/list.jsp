@@ -8,6 +8,7 @@
         <title>User</title>
     </head>
     <body>
+        <a href="user/new?tenant=${pageContext.request.getParameter('tenant')}">New User!</a>
         <table>
             <c:forEach var="user" items="${users}">
                 <tr>

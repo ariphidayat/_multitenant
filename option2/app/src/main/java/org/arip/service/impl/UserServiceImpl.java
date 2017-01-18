@@ -20,4 +20,11 @@ public class UserServiceImpl implements UserService {
     public List<User> getUsers() {
         return userMapper.getUsers();
     }
+
+    @Override
+    public User create(User user) {
+        userMapper.create(user);
+
+        return user;
+    }
 }
