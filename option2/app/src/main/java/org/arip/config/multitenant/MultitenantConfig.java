@@ -1,12 +1,12 @@
 package org.arip.config.multitenant;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -36,7 +36,7 @@ public class MultitenantConfig {
 
         for (File propertyFile : files) {
             Properties tenantProperties = new Properties();
-            DriverManagerDataSource dataSource = new DriverManagerDataSource();
+            BasicDataSource dataSource = new BasicDataSource();
 
             try {
                 tenantProperties.load(new FileInputStream(propertyFile));
@@ -66,7 +66,7 @@ public class MultitenantConfig {
     }
 
     private DataSource defaultDataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName(env.getRequiredProperty("db.driver"));
         dataSource.setUrl(env.getRequiredProperty("db.url"));
         dataSource.setUsername(env.getRequiredProperty("db.username"));
