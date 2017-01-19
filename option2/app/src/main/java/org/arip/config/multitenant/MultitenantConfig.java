@@ -10,13 +10,7 @@ import org.springframework.core.env.Environment;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.Collections;
 
 /**
  * Created by Arip Hidayat on 1/13/2017.
@@ -31,33 +25,9 @@ public class MultitenantConfig {
 
     @Bean
     public DataSource dataSource() {
-        File[] files = Paths.get("src/tenants").toFile().listFiles();
-        Map<Object, Object> resolvedDataSources = new HashMap<>();
-
-        for (File propertyFile : files) {
-            Properties tenantProperties = new Properties();
-            BasicDataSource dataSource = new BasicDataSource();
-
-            try {
-                tenantProperties.load(new FileInputStream(propertyFile));
-
-                String tenantId = tenantProperties.getProperty("name");
-
-                dataSource.setDriverClassName(tenantProperties.getProperty("db.driver"));
-                dataSource.setUrl(tenantProperties.getProperty("db.url"));
-                dataSource.setUsername(tenantProperties.getProperty("db.username"));
-                dataSource.setPassword(tenantProperties.getProperty("db.password"));
-
-                resolvedDataSources.put(tenantId, dataSource);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-
         MultitenantDataSource dataSource = new MultitenantDataSource();
         dataSource.setDefaultTargetDataSource(defaultDataSource());
-        dataSource.setTargetDataSources(resolvedDataSources);
+        dataSource.setTargetDataSources(Collections.emptyMap());
 
         // finalize the initialization of the data source.
         dataSource.afterPropertiesSet();

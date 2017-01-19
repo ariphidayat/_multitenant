@@ -58,6 +58,7 @@ public class PropertyController {
         setTenant();
 
         propertyService.create(property);
+        propertyService.updateProperties();
 
         return "redirect:/property";
     }
